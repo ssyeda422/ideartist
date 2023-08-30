@@ -82,7 +82,7 @@ function App() {
 
           <div>
             {loading ? (
-              <p>Loading...</p>
+              <p>Spinning wheels...</p>
             ) : (
               <>
                 {response && <p>{response}</p>}
