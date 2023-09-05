@@ -28,6 +28,26 @@
   color: #61dafb;
 }
 
+.title span {
+  font-weight: bolder;
+} 
+
+
+.fullBg {
+  background-image: linear-gradient(rgb(114, 181, 204), rgba(42, 138, 122, 0.738));
+  animation: fadein 4s;
+}
+
+@keyframes fadein {
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
