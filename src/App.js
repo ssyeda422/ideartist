@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Stack from 'react-bootstrap/Stack';
 import React, { useState } from 'react';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
@@ -15,42 +14,30 @@ function App() {
   const [inputList, setInputList] = useState([]);
   const [catCount, setCatCount] = useState(1.0);
 
-  const apiKey = process.env.REACT_APP_API_KEY;
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: "gpt-3.5-turbo",
+      max_tokens: 50,
+      temperature: 1,
+      messages: [{ role: "user", content: "Generate a random description of a " + value + " in 10 words as a drawing prompt" }]
+    })
+
+};
+  //const apiKey = process.env.REACT_APP_API_KEY;
 
   const handleClick = () => {
-
-    setResponse("Default response (for now!) while setting up proxy API")
-    console.log(response)
-
-    // const params = {
-    //   messages: [{ "role": "user", "content": "Can you generate a random description of a " + value + " in 5 words as a drawing prompt?" }],
-    //   model: "gpt-3.5-turbo",
-    //   max_tokens: 42,
-    //   temperature: 1,
-    // };
-
-    // console.log(params.messages)
-
-    // axios({
-
-    //   // Endpoint to send files
-    //   url: 'https://api.openai.com/v1/chat/completions',
-    //   method: "POST",
-    //   headers: {
-    //     'authorization': "Bearer " + apiKey,
-    //     'Content-Type': "application/json",
-    //   },
-    //   data: params,
-    // })
-    //   .then(response => {
-    //     setResponse(response.data.choices[0].message.content);
-    //     setLoading(false);
-    //     console.log(response.data.choices[0].message.content)
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching data:', error);
-    //     setLoading(false);
-    //   });
+    fetch('https://ideartist-server.netlify.app/.netlify/functions/server/data', requestOptions)
+      .then((response) => response.json())
+      .then((responseData) => {
+        // console.log(responseData.answer.choices[0].message.content)
+        setResponse(responseData.answer.choices[0].message.content); 
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   };
 
   const handleChange = (val) => {
@@ -141,8 +128,12 @@ function App() {
 
           <div>
 
-            {/* {response && <p><i>{response}</i></p>} */}
-
+            {response ? (
+              <p>{response}</p> // Conditionally render only when data is available
+            ) : (
+              <p></p> // Display a loading message while waiting for data
+            )}
+            
           </div>
 
         </Stack>
