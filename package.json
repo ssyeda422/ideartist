@@ -16,7 +16,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://6510792b79d05804476fc217--ideartist-server.netlify.app",
   "homepage": "https://ssyeda422.github.io/ideartist",
   "scripts": {
     "predeploy": "npm run build",
