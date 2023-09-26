@@ -18,6 +18,7 @@ function App() {
   const [value, setValue] = useState("scene")
   const [inputList, setInputList] = useState([]);
   const [catCount, setCatCount] = useState(1.0);
+  const [answerTxt, setAnswerTxt] = useState("")
 
   const radios = [
     { name: 'scene', value: 'scene' },
@@ -41,6 +42,7 @@ function App() {
 
   const handleClick = () => {
 
+    setAnswerTxt("")
     setLoading(true)
     fetch('https://ideartist-server.netlify.app/.netlify/functions/server/data', requestOptions)
       .then((response) => response.json())
@@ -48,6 +50,7 @@ function App() {
         // console.log(responseData.answer.choices[0].message.content)
         setLoading(false);
         setResponse(responseData.answer.choices[0].message.content);
+        setAnswerTxt("answerTxt")
       })
       .catch((error) => {
         console.error(error);
@@ -146,7 +149,7 @@ function App() {
             {loading ? (
               <Spinner animation="border" />
             ) : (
-              <div className="answerTxt">
+              <div className={answerTxt}>
               <p class="lead"><em>{response}</em></p>
               </div>
             )}
