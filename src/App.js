@@ -90,7 +90,7 @@ function App() {
       background-color: teal;
       color: white;
       border-radius: 1px;
-      margin: 6px;
+      margin: .6vh;
     }
     .btn-outline-secondary {
       border-color: white;

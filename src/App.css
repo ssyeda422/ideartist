@@ -42,7 +42,7 @@
 }
 
 btn-group>.btn-group:not(:first-child), .btn-group>:not(.btn-check:first-child)+.btn {
-  margin: .8vh !important;
+  margin: .6vh !important;
 }
 
 .addChoice {
