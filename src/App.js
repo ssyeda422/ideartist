@@ -90,7 +90,7 @@ function App() {
       background-color: teal;
       color: white;
       border-radius: 1px;
-      margin: 7px;
+      margin: 6px;
     }
     .btn-outline-secondary {
       border-color: white;
@@ -106,7 +106,7 @@ function App() {
           <p class="lead">Select a category to get started, or add your own!</p>
 
           <div>
-            <ButtonGroup className="m-1 choices">
+            <ButtonGroup className="mx-auto choices">
               {radios.map((radio, idx) => (
                 <ToggleButton
                   key={idx}
@@ -124,7 +124,7 @@ function App() {
               <ToggleButton onClick={addBtnClick} variant="flat" value="add">+</ToggleButton>
             </ButtonGroup>
           </div>
-          <div className="addChoice">
+          <div className="addChoice mt-2">
           <Stack direction="horizontal" gap={2} className="choices">
           {inputList.map((item) => (
             <InputGroup key={item.id}>
